@@ -8,7 +8,7 @@ export function buildMovies() {
     id: '1',
     title: 'The Godfather',
     overview:
-      'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his hindi son.',
+      'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
     releaseDate: '1972-03-24',
     rating: 8.7,
     actors: [alPacino],

@@ -9,6 +9,8 @@ import MovieDetail from './routes/MovieDetail';
 import { Movies, getAllMovies } from './routes/Movies';
 import Actors, { getActors } from './routes/Actors';
 import { ChakraProvider } from '@chakra-ui/react';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import ActorDetail, { getActorDetail } from './routes/ActorDetail';
 
 let rootRoute = new RootRoute();
 
@@ -25,9 +27,9 @@ const moviesRoute = new Route({
   loader: getAllMovies
 })
 
-const movieDetailRoute = new Route({
+export const movieDetailRoute = new Route({
   getParentRoute: () => moviesRoute,
-  path: '/movies/$movieId',
+  path: '/$movieId',
   component: MovieDetail,
   loader: getMovieDetail
 });
@@ -39,9 +41,18 @@ const actorsRoute = new Route({
   loader: getActors,
 })
 
+export const actorDetailRoute = new Route({
+  getParentRoute: () => actorsRoute,
+  path: '/$actorId',
+  component: ActorDetail,
+  loader: getActorDetail
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  actorsRoute,
+  actorsRoute.addChildren([
+    actorDetailRoute,
+  ]),
   moviesRoute.addChildren([
     movieDetailRoute,
   ])
@@ -62,6 +73,7 @@ root.render(
   <ChakraProvider>
     <React.StrictMode>
       <RouterProvider router={router} />
+      <TanStackRouterDevtools router={router} />
     </React.StrictMode>
   </ChakraProvider>
 );
