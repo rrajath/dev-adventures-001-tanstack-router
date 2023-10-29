@@ -1,4 +1,6 @@
+import { Box } from '@chakra-ui/react';
 import { getActor } from '../utils/actors';
+import ActorName from '../components/ActorName';
 
 export function getActorDetail({ params: { actorId }}) {
   const id = Number(actorId);
@@ -9,13 +11,11 @@ export function getActorDetail({ params: { actorId }}) {
 export default function ActorDetail({ useLoader }) {
   const actorDetail = useLoader(ActorDetail);
   return (
-    <div>
-    <h1>
-      {actorDetail.name}
-    </h1>
-    <p>
-      {actorDetail.age}
-    </p>
-  </div>
+    <Box m={4}>
+      <ActorName props={{ actorName: actorDetail.name }}/>
+      <p>
+        {actorDetail.age}
+      </p>
+    </Box>
   )
 }

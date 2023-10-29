@@ -1,9 +1,8 @@
-import React from 'react';
 import { buildActors } from '../utils/database';
 import Nav from '../components/Nav';
 import { Box, Flex } from '@chakra-ui/react';
-import { Link, Outlet } from '@tanstack/react-router';
-import { actorDetailRoute } from '..';
+import { Outlet } from '@tanstack/react-router';
+import ActorListItem from '../components/ActorsListItem';
 
 export function getActors() {
   return buildActors();
@@ -14,12 +13,10 @@ export default function Actors({ useLoader }) {
   return (
     <>
       <Nav/>
-      <Flex direction={'row'}>
-      <Box flex={1}>
+      <Flex direction={'row'} p={4}>
+      <Box flex={3}>
         {actors.map((a: any) => (
-          <div key={a.id}>
-            <Link to={actorDetailRoute.to} params={{ actorId: a.id }}>{a.name}</Link>
-          </div>
+          <ActorListItem props={{ actorDetail: a }}/>
         ))}
       </Box>
       <Box flex={10}>
