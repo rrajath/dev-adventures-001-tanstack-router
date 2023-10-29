@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import { Link, Outlet } from '@tanstack/react-router';
 import { movieDetailRoute } from '..';
 import { Box, Flex } from '@chakra-ui/react';
+import MovieListItem from '../components/MovieListItem';
 
 export function getAllMovies() {
   return getMovies();
@@ -14,10 +15,10 @@ export function Movies({ useLoader }) {
     <>
       <Nav/>
       <Flex direction={'row'}>
-        <Box flex={1}>
+        <Box flex={3}>
           {movies.map((m: any) => (
             <div key={m.id}>
-              <h2><Link to={movieDetailRoute.to} params={{ movieId: m.id }}>{m.title}</Link></h2>
+              <MovieListItem props={{ movieDetail: m }}/>
             </div>
           ))}
         </Box>

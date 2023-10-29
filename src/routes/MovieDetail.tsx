@@ -1,6 +1,8 @@
 import React from 'react';
 import { getMovie } from '../utils/movies';
 import Nav from '../components/Nav';
+import MovieName from '../components/MovieName';
+import { Box, Spacer } from '@chakra-ui/react';
 
 export function getMovieDetail({ params: { movieId } }) {
   const id = Number(movieId);
@@ -11,13 +13,11 @@ export function getMovieDetail({ params: { movieId } }) {
 export default function MovieDetail({ useLoader }) {
   const movieDetail = useLoader(MovieDetail);
   return (
-    <div>
-      <h1>
-        {movieDetail.title}
-      </h1>
+    <Box m={4}>
+      <MovieName props={{ movieName: movieDetail.title }}/>
       <p>
         {movieDetail.overview}
       </p>
-    </div>
+    </Box>
   );
 };
