@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import { Box, Flex } from '@chakra-ui/react';
 import { Outlet } from '@tanstack/react-router';
 import ActorListItem from '../components/ActorsListItem';
+import SearchBox from '../components/SearchBox';
 
 export function getActors() {
   return buildActors();
@@ -13,8 +14,9 @@ export default function Actors({ useLoader }) {
   return (
     <>
       <Nav/>
-      <Flex direction={'row'} p={4}>
-      <Box flex={3}>
+      <Flex direction={'row'}>
+      <Box flex={3} m={4} p={4}>
+        <SearchBox/>
         {actors.map((a: any) => (
           <ActorListItem props={{ actorDetail: a }}/>
         ))}

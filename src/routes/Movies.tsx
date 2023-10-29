@@ -4,6 +4,7 @@ import { Link, Outlet } from '@tanstack/react-router';
 import { movieDetailRoute } from '..';
 import { Box, Flex } from '@chakra-ui/react';
 import MovieListItem from '../components/MovieListItem';
+import SearchBox from '../components/SearchBox';
 
 export function getAllMovies() {
   return getMovies();
@@ -15,7 +16,8 @@ export function Movies({ useLoader }) {
     <>
       <Nav/>
       <Flex direction={'row'}>
-        <Box flex={3}>
+        <Box flex={3} m={4} p={4}>
+          <SearchBox/>
           {movies.map((m: any) => (
             <div key={m.id}>
               <MovieListItem props={{ movieDetail: m }}/>
